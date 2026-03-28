@@ -15,14 +15,12 @@
       --muted: #7f756c;
       --line: rgba(90, 78, 69, 0.12);
       --accent: #d8c9bc;
-      --accent-2: #eee4dc;
       --shadow: 0 18px 50px rgba(64, 48, 39, 0.08);
       --radius: 28px;
       --max: 760px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -45,7 +43,7 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
       margin: 0 auto 14px;
       backdrop-filter: blur(14px);
       background: rgba(247,243,239,0.75);
@@ -83,17 +81,11 @@
     .card,
     .timeline-item,
     .rsvp,
-    .photo-frame {
+    .photo-frame,
+    .hero-photo {
       opacity: 0;
       transform: translateY(36px) scale(0.98);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-
-    .hero-card.is-visible,
-    .card.is-visible,
-    .timeline-item.is-visible,
-    .rsvp.is-visible,
-    .photo-frame.is-visible {
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
       background: var(--paper);
       border: 1px solid rgba(255,255,255,0.55);
       box-shadow: var(--shadow);
@@ -104,13 +96,10 @@
     .card.is-visible,
     .timeline-item.is-visible,
     .rsvp.is-visible,
-    .photo-frame.is-visible {
+    .photo-frame.is-visible,
+    .hero-photo.is-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
-    }
-
-    .hero-card {
-      transition-delay: 0.15s;
     }
 
     .hero-card {
@@ -119,6 +108,7 @@
       padding: 52px 24px 44px;
       position: relative;
       overflow: hidden;
+      transition-delay: 0.15s;
     }
 
     .hero-card::before,
@@ -143,6 +133,20 @@
       right: -40px;
       bottom: -60px;
     }
+
+    .floating-ornament {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(216, 201, 188, 0.15));
+      filter: blur(2px);
+      animation: floatSoft 6s ease-in-out infinite;
+      opacity: 0.55;
+    }
+
+    .floating-ornament.left { top: 12%; left: 6%; }
+    .floating-ornament.right { right: 8%; bottom: 14%; animation-delay: 1.4s; }
 
     .eyebrow {
       font-size: 12px;
@@ -169,28 +173,6 @@
       font-size: 30px;
       color: var(--muted);
       margin: 8px 0;
-    }
-
-    .floating-ornament {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(216, 201, 188, 0.15));
-      filter: blur(2px);
-      animation: floatSoft 6s ease-in-out infinite;
-      opacity: 0.55;
-    }
-
-    .floating-ornament.left {
-      top: 12%;
-      left: 6%;
-    }
-
-    .floating-ornament.right {
-      right: 8%;
-      bottom: 14%;
-      animation-delay: 1.4s;
     }
 
     .subtitle {
@@ -223,93 +205,102 @@
       100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
     }
 
+    @keyframes lineReveal {
+      0% { opacity: 0; transform: translateY(22px); clip-path: inset(0 0 100% 0); }
+      100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+    }
+
     .hero-card.is-visible h1,
     .hero-card.is-visible .subtitle,
     .hero-card.is-visible .date-big,
     .hero-card.is-visible .city,
-    .hero-card.is-visible .countdown {
+    .hero-card.is-visible .countdown-inline,
+    .hero-card.is-visible .music-toggle {
       animation: shimmerIn 1s ease both;
     }
 
     .hero-card.is-visible .subtitle { animation-delay: 0.15s; }
     .hero-card.is-visible .date-big { animation-delay: 0.25s; }
     .hero-card.is-visible .city { animation-delay: 0.35s; }
-    .hero-card.is-visible .countdown { animation-delay: 0.45s; }
+    .hero-card.is-visible .countdown-inline { animation-delay: 0.45s; }
+    .hero-card.is-visible .music-toggle { animation-delay: 0.55s; }
 
-    .countdown {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+    .love-text span {
+      display: block;
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .love-text.is-visible span {
+      animation: lineReveal 0.85s ease forwards;
+    }
+
+    .love-text.is-visible span:nth-child(1) { animation-delay: 0.08s; }
+    .love-text.is-visible span:nth-child(2) { animation-delay: 0.22s; }
+    .love-text.is-visible span:nth-child(3) { animation-delay: 0.36s; }
+    .love-text.is-visible span:nth-child(4) { animation-delay: 0.50s; }
+
+    .countdown-inline {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 12px;
       margin-top: 28px;
     }
 
-    .count-item {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 14px 8px;
-      background: rgba(255,255,255,0.38);
+    .count-sep {
+      color: var(--muted);
+      font-size: 18px;
+      transform: translateY(-6px);
     }
 
-    .count-item strong {
-      display: block;
-      font-size: 26px;
+    .count-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 72px;
+    }
+
+    .count-circle strong {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
       font-weight: 600;
-      line-height: 1;
-      margin-bottom: 6px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--line);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
     }
 
-    .count-item span {
-      font-size: 11px;
-      letter-spacing: 0.08em;
+    .count-circle span {
+      font-size: 10px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    section {
-      margin-top: 20px;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .photo-frame {
-      position: relative;
-      overflow: hidden;
-      min-height: 230px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transform: scale(1.04);
-      transition: transform 1.2s ease;
-    }
-
-    .photo-frame:hover img {
-      transform: scale(1.09);
-    }
-
-    .photo-caption {
-      position: absolute;
-      left: 14px;
-      bottom: 14px;
-      padding: 8px 12px;
+    .music-toggle {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.55);
+      cursor: pointer;
       color: var(--text);
-      font-size: 12px;
+      font: inherit;
     }
+
+    .music-toggle:hover { transform: translateY(-1px); }
+
+    section { margin-top: 20px; }
 
     .card {
       border-radius: var(--radius);
@@ -369,37 +360,6 @@
       font-size: 14px;
     }
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .chip {
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.45);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .palette {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .swatch {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
-    }
-
     .map-link,
     .btn {
       display: inline-flex;
@@ -415,6 +375,36 @@
       border: 1px solid rgba(104, 84, 69, 0.10);
       box-shadow: 0 8px 24px rgba(91, 69, 52, 0.08);
       font-weight: 500;
+    }
+
+    .hero-photo {
+      position: relative;
+      min-height: 420px;
+      border-radius: 34px;
+      overflow: hidden;
+      margin-top: 20px;
+      background: #ddd url('images/hero-photo.jpg') center/cover no-repeat;
+    }
+
+    .hero-photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(247,243,239,0.04), rgba(47,42,39,0.18));
+    }
+
+    .hero-photo-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      color: #fff;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      line-height: 1;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.22);
     }
 
     .rsvp form {
@@ -457,14 +447,16 @@
     }
 
     @media (max-width: 640px) {
-      .photo-grid { grid-template-columns: 1fr; }
-      .photo-frame { min-height: 280px; }
-
       .topbar-inner { gap: 12px; font-size: 11px; }
-      .countdown { grid-template-columns: repeat(2, 1fr); }
       .timeline-item { grid-template-columns: 1fr; gap: 8px; }
       .time { font-size: 32px; }
       .hero-card, .card { padding-left: 18px; padding-right: 18px; }
+      .countdown-inline { gap: 8px; }
+      .count-sep { display: none; }
+      .count-circle { min-width: 62px; }
+      .count-circle strong { width: 56px; height: 56px; font-size: 20px; }
+      .hero-photo { min-height: 320px; }
+      .hero-photo-caption { font-size: 28px; }
     }
   </style>
 </head>
@@ -489,12 +481,18 @@
         <div class="date-big">01 / 08 / 2026</div>
         <div class="city">Саранск</div>
 
-        <div class="countdown" id="countdown">
-          <div class="count-item"><strong id="days">0</strong><span>дней</span></div>
-          <div class="count-item"><strong id="hours">0</strong><span>часов</span></div>
-          <div class="count-item"><strong id="minutes">0</strong><span>минут</span></div>
-          <div class="count-item"><strong id="seconds">0</strong><span>секунд</span></div>
+        <div class="countdown-inline" id="countdown">
+          <div class="count-circle"><strong id="days">0</strong><span>дней</span></div>
+          <div class="count-sep">:</div>
+          <div class="count-circle"><strong id="hours">0</strong><span>часов</span></div>
+          <div class="count-sep">:</div>
+          <div class="count-circle"><strong id="minutes">0</strong><span>минут</span></div>
+          <div class="count-sep">:</div>
+          <div class="count-circle"><strong id="seconds">0</strong><span>секунд</span></div>
         </div>
+
+        <button class="music-toggle" id="musicToggle" type="button">🎵 Включить музыку</button>
+      </div>
       </div>
     </section>
 
@@ -502,9 +500,11 @@
       <div class="card animate-on-scroll">
         <h2>Дорогие родные и друзья!</h2>
         <div class="divider"></div>
-        <p class="lead">
-          Совсем скоро состоится событие, которое станет для нас началом новой семейной истории.
-          Мы от всего сердца приглашаем вас быть рядом, разделить радость этого дня, тёплые объятия, улыбки и счастливые моменты.
+        <p class="lead love-text animate-on-scroll">
+          <span>Совсем скоро состоится событие, которое станет для нас началом новой семейной истории.</span>
+          <span>Мы от всего сердца приглашаем вас быть рядом,</span>
+          <span>разделить радость этого дня, тёплые объятия, улыбки</span>
+          <span>и счастливые моменты.</span>
         </p>
       </div>
     </section>
@@ -539,6 +539,12 @@
       </div>
     </section>
 
+    <section id="photos">
+      <div class="hero-photo animate-on-scroll">
+        <div class="hero-photo-caption">Ваше любимое фото</div>
+      </div>
+    </section>
+
     <section id="place">
       <div class="card animate-on-scroll">
         <h2>Место проведения</h2>
@@ -556,18 +562,6 @@
         <h2>Dress code</h2>
         <div class="divider"></div>
         <p class="lead">Будем рады, если вы поддержите атмосферу дня в светлых, нежных и спокойных оттенках.</p>
-        <div class="palette">
-          <div class="swatch" style="background:#f4efe9"></div>
-          <div class="swatch" style="background:#e6d8cb"></div>
-          <div class="swatch" style="background:#d5c2b3"></div>
-          <div class="swatch" style="background:#c2b2a6"></div>
-        </div>
-        <div class="chips">
-          <div class="chip">молочный</div>
-          <div class="chip">бежевый</div>
-          <div class="chip">пудровый</div>
-          <div class="chip">кофейный</div>
-        </div>
       </div>
     </section>
 
@@ -582,25 +576,8 @@
       </div>
     </section>
 
-    <section id="photos">
-      <div class="card animate-on-scroll">
-        <h2>Наши фотографии</h2>
-        <div class="divider"></div>
-        <p class="lead">Сюда можно добавить ваши любимые кадры — они красиво появятся при прокрутке.</p>
-        <div class="photo-grid">
-          <div class="photo-frame animate-on-scroll">
-            <img src="images/photo-1.jpg" alt="Руслан и Дарья">
-            <div class="photo-caption">Ваше фото 1</div>
-          </div>
-          <div class="photo-frame animate-on-scroll">
-            <img src="images/photo-2.jpg" alt="Руслан и Дарья">
-            <div class="photo-caption">Ваше фото 2</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="rsvp">
+      <div class="card rsvp animate-on-scroll">
       <div class="card rsvp animate-on-scroll">
         <h2>Обратная связь</h2>
         <p class="lead">Пожалуйста, подтвердите своё присутствие заранее.</p>
@@ -683,6 +660,24 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    const music = new Audio('music/song.mp3');
+    music.loop = true;
+    const musicToggle = document.getElementById('musicToggle');
+
+    musicToggle.addEventListener('click', async () => {
+      try {
+        if (music.paused) {
+          await music.play();
+          musicToggle.textContent = '⏸ Выключить музыку';
+        } else {
+          music.pause();
+          musicToggle.textContent = '🎵 Включить музыку';
+        }
+      } catch (e) {
+        alert('Добавьте файл music/song.mp3 в репозиторий, чтобы музыка заработала.');
+      }
+    });
   </script>
 </body>
 </html>
