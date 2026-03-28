@@ -1,137 +1,543 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Анна & Михаил — Свадьба</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Руслан & Дарья — 01.08.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f7f3ef;
+      --paper: rgba(255,255,255,0.72);
+      --text: #2f2a27;
+      --muted: #7f756c;
+      --line: rgba(90, 78, 69, 0.12);
+      --accent: #d8c9bc;
+      --accent-2: #eee4dc;
+      --shadow: 0 18px 50px rgba(64, 48, 39, 0.08);
+      --radius: 28px;
+      --max: 760px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: #333;
-      background: #fafafa;
+      font-family: 'Manrope', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(230,220,210,0.45), transparent 28%),
+        var(--bg);
+      line-height: 1.55;
     }
-    .container {
-      max-width: 800px;
+
+    .wrap {
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 20px 16px 80px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin: 0 auto 14px;
+      backdrop-filter: blur(14px);
+      background: rgba(247,243,239,0.75);
+      border-bottom: 1px solid rgba(90, 78, 69, 0.08);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .topbar a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 34px 0 14px;
+    }
+
+    .hero-card,
+    .card,
+    .timeline-item,
+    .rsvp {
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-card {
+      width: 100%;
+      border-radius: 36px;
+      padding: 52px 24px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(216, 201, 188, 0.24);
+      filter: blur(10px);
+    }
+
+    .hero-card::before {
+      width: 180px;
+      height: 180px;
+      top: -60px;
+      left: -50px;
+    }
+
+    .hero-card::after {
+      width: 160px;
+      height: 160px;
+      right: -40px;
+      bottom: -60px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3, .date-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(54px, 11vw, 102px);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+    }
+
+    .amp {
+      display: block;
+      font-size: 30px;
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .subtitle {
+      max-width: 430px;
+      margin: 22px auto 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .date-big {
+      font-size: clamp(34px, 8vw, 58px);
+      margin-top: 18px;
+    }
+
+    .city {
+      margin-top: 8px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .count-item {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 14px 8px;
+      background: rgba(255,255,255,0.38);
+    }
+
+    .count-item strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .count-item span {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 20px;
+    }
+
+    .card {
+      border-radius: var(--radius);
+      padding: 34px 22px;
       text-align: center;
     }
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
-    }
-    h1 {
-      font-size: 42px;
+
+    h2 {
+      font-size: clamp(34px, 7vw, 54px);
       margin-bottom: 10px;
     }
-    h2 {
+
+    .lead {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .divider {
+      width: 74px;
+      height: 1px;
+      background: var(--line);
+      margin: 18px auto 20px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .timeline-item {
+      border-radius: 24px;
+      padding: 22px 18px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .timeline-item h3 {
       font-size: 28px;
-      margin-top: 60px;
+      margin-bottom: 6px;
     }
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #555;
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
     }
-    .date {
-      margin-top: 10px;
-      font-size: 18px;
-      letter-spacing: 2px;
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
     }
-    .block {
-      margin-top: 40px;
+
+    .chip {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.45);
+      color: var(--muted);
+      font-size: 13px;
     }
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+    .palette {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
     }
+
+    .swatch {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    .map-link,
     .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      border-radius: 30px;
-      background: #e8e8e8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       text-decoration: none;
-      color: #333;
-      transition: 0.3s;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 14px 22px;
+      margin-top: 18px;
+      background: linear-gradient(180deg, #fff, #f5eee8);
+      border: 1px solid rgba(104, 84, 69, 0.10);
+      box-shadow: 0 8px 24px rgba(91, 69, 52, 0.08);
+      font-weight: 500;
     }
-    .btn:hover {
-      background: #ddd;
+
+    .rsvp form {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+      text-align: left;
     }
-    input, textarea {
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    input, select, textarea {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-family: 'Inter', sans-serif;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      padding: 14px 16px;
+      font: inherit;
+      color: var(--text);
+      outline: none;
     }
-    form {
-      margin-top: 20px;
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    .note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 38px 16px 10px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner { gap: 12px; font-size: 11px; }
+      .countdown { grid-template-columns: repeat(2, 1fr); }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .time { font-size: 32px; }
+      .hero-card, .card { padding-left: 18px; padding-right: 18px; }
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>Анна & Михаил</h1>
-    <p>Приглашаем вас разделить с нами самый важный день</p>
-    <div class="date">20 ИЮНЯ 2026</div>
-
-    <div class="block">
-      <p>
-        Дорогие родные и друзья!<br><br>
-        Мы будем счастливы видеть вас на нашей свадьбе.
-        Этот день станет для нас особенным, и нам очень важно провести его вместе с вами.
-      </p>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="#invite">Приглашение</a>
+      <a href="#day">Программа</a>
+      <a href="#place">Место</a>
+      <a href="#rsvp">Обратная связь</a>
     </div>
-
-    <div class="block">
-      <h2>Когда и где</h2>
-      <div class="card">
-        <p><strong>Церемония</strong><br>
-        20 июня 2026, 15:00<br>
-        ЗАГС или площадка</p>
-      </div>
-      <div class="card">
-        <p><strong>Ужин</strong><br>
-        20 июня 2026, 17:00<br>
-        Ресторан или площадка</p>
-      </div>
-    </div>
-
-    <div class="block">
-      <h2>Дресс-код</h2>
-      <p>Нежные, светлые оттенки и минимализм будут идеально сочетаться с атмосферой дня.</p>
-    </div>
-
-    <div class="block">
-      <h2>Подарки</h2>
-      <p>
-        Ваше присутствие — самый важный подарок для нас.
-        Если вы захотите сделать дополнительный подарок,
-        мы будем рады вкладу в наше свадебное путешествие.
-      </p>
-    </div>
-
-    <div class="block">
-      <h2>Подтверждение присутствия</h2>
-      <p>Пожалуйста, ответьте до 1 июня 2026</p>
-
-      <form>
-        <input type="text" placeholder="Ваше имя">
-        <input type="text" placeholder="Будете ли вы с парой?">
-        <textarea placeholder="Комментарий (например, пищевые ограничения)"></textarea>
-        <button class="btn">Отправить</button>
-      </form>
-    </div>
-
   </div>
 
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Свадебное приглашение</div>
+        <h1>Руслан <span class="amp">&</span> Дарья</h1>
+        <p class="subtitle">Мы будем счастливы разделить с вами один из самых важных и красивых дней в нашей жизни.</p>
+        <div class="date-big">01 / 08 / 2026</div>
+        <div class="city">Саранск</div>
+
+        <div class="countdown" id="countdown">
+          <div class="count-item"><strong id="days">0</strong><span>дней</span></div>
+          <div class="count-item"><strong id="hours">0</strong><span>часов</span></div>
+          <div class="count-item"><strong id="minutes">0</strong><span>минут</span></div>
+          <div class="count-item"><strong id="seconds">0</strong><span>секунд</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="invite">
+      <div class="card">
+        <h2>Дорогие родные и друзья!</h2>
+        <div class="divider"></div>
+        <p class="lead">
+          Совсем скоро состоится событие, которое станет для нас началом новой семейной истории.
+          Мы от всего сердца приглашаем вас быть рядом, разделить радость этого дня, тёплые объятия, улыбки и счастливые моменты.
+        </p>
+      </div>
+    </section>
+
+    <section id="day">
+      <div class="card">
+        <h2>Программа дня</h2>
+        <p class="lead">Сохраните время и проведите этот день вместе с нами.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">13:30</div>
+            <div>
+              <h3>Церемония</h3>
+              <p>ЗАГС, Саранск</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">14:30</div>
+            <div>
+              <h3>Велком-зона</h3>
+              <p>Время для тёплых встреч, поздравлений и первых праздничных моментов.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">после</div>
+            <div>
+              <h3>Праздничный вечер</h3>
+              <p>Ресторан «Рэдисон»</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="place">
+      <div class="card">
+        <h2>Место проведения</h2>
+        <div class="divider"></div>
+        <p class="lead">
+          Мы очень ждём этот день и будем рады видеть вас на регистрации, а затем — на праздничном вечере в ресторане.
+        </p>
+        <a class="map-link" href="#">Добавить ссылку на карту</a>
+        <p class="note">Сюда можно вставить ссылку на Яндекс Карты или 2ГИС.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2>Dress code</h2>
+        <div class="divider"></div>
+        <p class="lead">Будем рады, если вы поддержите атмосферу дня в светлых, нежных и спокойных оттенках.</p>
+        <div class="palette">
+          <div class="swatch" style="background:#f4efe9"></div>
+          <div class="swatch" style="background:#e6d8cb"></div>
+          <div class="swatch" style="background:#d5c2b3"></div>
+          <div class="swatch" style="background:#c2b2a6"></div>
+        </div>
+        <div class="chips">
+          <div class="chip">молочный</div>
+          <div class="chip">бежевый</div>
+          <div class="chip">пудровый</div>
+          <div class="chip">кофейный</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2>Пожелания</h2>
+        <div class="divider"></div>
+        <p class="lead">
+          Ваше присутствие — лучший подарок для нас. Если вы захотите поздравить нас дополнительно,
+          мы будем рады вкладу в наши будущие совместные мечты и путешествия.
+        </p>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="card rsvp">
+        <h2>Обратная связь</h2>
+        <p class="lead">Пожалуйста, подтвердите своё присутствие заранее.</p>
+
+        <form>
+          <div>
+            <label>Ваше имя и фамилия</label>
+            <input type="text" placeholder="Например: Анна Иванова">
+          </div>
+
+          <div>
+            <label>Сможете присутствовать?</label>
+            <select>
+              <option>Я обязательно буду</option>
+              <option>К сожалению, не смогу прийти</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Будете ли вы с парой?</label>
+            <select>
+              <option>Приду один / одна</option>
+              <option>Буду с парой</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Комментарий</label>
+            <textarea placeholder="Например: пищевые ограничения или другой важный комментарий"></textarea>
+          </div>
+
+          <button class="btn" type="button">Отправить</button>
+        </form>
+
+        <p class="note">Чтобы форма реально отправляла ответы, её можно подключить к Google Forms, Formspree или Telegram-боту.</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      С любовью, Руслан и Дарья · 01.08.2026
+    </div>
+  </main>
+
+  <script>
+    const weddingDate = new Date('2026-08-01T13:30:00+03:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
