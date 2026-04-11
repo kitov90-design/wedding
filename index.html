@@ -1,809 +1,310 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Руслан & Дарья — 01.08.2026</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Руслан и Дарья - 01.08.2026</title>
+  <meta
+    name="description"
+    content="Свадебное приглашение Руслана и Дарьи. 01 августа 2026."
+  >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f6f1eb;
-      --paper: rgba(255,255,255,0.74);
-      --text: #2f2a27;
-      --muted: #7f756c;
-      --line: rgba(90,78,69,0.12);
-      --shadow: 0 18px 50px rgba(64,48,39,0.08);
-      --radius: 28px;
-      --max: 760px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Manrope', sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.94), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(230,220,210,0.42), transparent 28%),
-        var(--bg);
-      line-height: 1.55;
-    }
-
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 20px 16px 80px;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      margin: 0 auto 14px;
-      backdrop-filter: blur(14px);
-      background: rgba(246,241,235,0.78);
-      border-bottom: 1px solid rgba(90,78,69,0.08);
-    }
-
-    .topbar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 16px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      flex-wrap: wrap;
-    }
-
-    .topbar a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(36px) scale(0.98);
-      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .animate-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    .glass {
-      background: var(--paper);
-      border: 1px solid rgba(255,255,255,0.58);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-    }
-
-    .hero {
-      min-height: 96vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 22px 0 14px;
-    }
-
-    .hero-card {
-      width: 100%;
-      border-radius: 36px;
-      padding: 18px 18px 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      min-height: 540px;
-      border-radius: 30px;
-      position: relative;
-      overflow: hidden;
-      background: #d8d1ca url('images/hero-bg.jpg') center/cover no-repeat;
-    }
-
-    .hero-bg::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(47,42,39,0.08) 55%, rgba(47,42,39,0.4) 100%);
-    }
-
-    .floating-ornament {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(216,201,188,0.15));
-      filter: blur(2px);
-      animation: floatSoft 6s ease-in-out infinite;
-      opacity: 0.55;
-      z-index: 1;
-    }
-
-    .floating-ornament.left { top: 10%; left: 5%; }
-    .floating-ornament.right { right: 7%; bottom: 28%; animation-delay: 1.4s; }
-
-    .hero-content {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 28px 22px 24px;
-      color: #fff;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: auto;
-      margin-top: 10px;
-    }
-
-    h1, h2, h3, .date-big {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    h1 {
-      font-size: clamp(54px, 12vw, 100px);
-      line-height: 0.95;
-      letter-spacing: 0.01em;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.16);
-    }
-
-    .amp {
-      display: block;
-      font-size: 30px;
-      color: rgba(255,255,255,0.92);
-      margin: 6px 0;
-    }
-
-    .hero-caption {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(12px);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    @keyframes floatSoft {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes shimmerIn {
-      0% { opacity: 0; transform: translateY(24px) scale(0.98); filter: blur(8px); }
-      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
-
-    @keyframes lineReveal {
-      0% { opacity: 0; transform: translateY(22px); clip-path: inset(0 0 100% 0); }
-      100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes pulseMain {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.95; }
-    }
-
-    @keyframes pulseSecond {
-      0%, 100% { transform: scale(1.1); opacity: 0.45; }
-      50% { transform: scale(1.38); opacity: 0.12; }
-    }
-
-    .hero-card.is-visible h1,
-    .hero-card.is-visible .hero-caption {
-      animation: shimmerIn 1s ease both;
-    }
-
-    section { margin-top: 20px; }
-
-    .card {
-      border-radius: var(--radius);
-      padding: 34px 22px;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: clamp(34px, 7vw, 54px);
-      margin-bottom: 10px;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    .love-text span {
-      display: block;
-      opacity: 0;
-      transform: translateY(18px);
-    }
-
-    .love-text.is-visible span {
-      animation: lineReveal 0.85s ease forwards;
-    }
-
-    .love-text.is-visible span:nth-child(1) { animation-delay: 0.08s; }
-    .love-text.is-visible span:nth-child(2) { animation-delay: 0.22s; }
-    .love-text.is-visible span:nth-child(3) { animation-delay: 0.36s; }
-
-    .divider {
-      width: 74px;
-      height: 1px;
-      background: var(--line);
-      margin: 18px auto 20px;
-    }
-
-    .calendar-wrap {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      max-width: 620px;
-      margin-top: 12px;
-      border-radius: 24px;
-      overflow: hidden;
-    }
-
-    .calendar-wrap img {
-      width: 100%;
-      display: block;
-      border-radius: 24px;
-    }
-
-    .heart-wrap {
-      position: absolute;
-      top: 38.5%;
-      left: 74.5%;
-      transform: translate(-50%, -50%);
-      width: 88px;
-      height: 88px;
-      z-index: 3;
-    }
-
-    .heart-img {
-      width: 88px;
-      position: absolute;
-      inset: 0;
-      animation: pulseMain 1.8s ease-in-out infinite;
-      filter: drop-shadow(0 0 12px rgba(255,170,170,0.6));
-    }
-
-    .heart-img.second {
-      opacity: 0.55;
-      animation: pulseSecond 1.8s ease-in-out infinite;
-    }
-
-    .subhead {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      margin: 12px 0 8px;
-    }
-
-    .countdown-inline {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: nowrap;
-      margin-top: 16px;
-    }
-
-    .count-sep {
-      color: var(--muted);
-      font-size: 18px;
-      transform: translateY(-6px);
-    }
-
-    .count-circle {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      min-width: 72px;
-    }
-
-    .count-circle strong {
-      width: 64px;
-      height: 64px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 600;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid var(--line);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
-    }
-
-    .count-circle span {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .music-toggle,
-    .map-link,
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--text);
-      border-radius: 999px;
-      padding: 14px 22px;
-      margin-top: 18px;
-      background: linear-gradient(180deg, #fff, #f5eee8);
-      border: 1px solid rgba(104,84,69,0.10);
-      box-shadow: 0 8px 24px rgba(91,69,52,0.08);
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 14px;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .timeline-item {
-      border-radius: 24px;
-      padding: 22px 18px;
-      text-align: left;
-      display: grid;
-      grid-template-columns: 94px 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-
-    .timeline-item.glass {
-      background: var(--paper);
-      border: 1px solid rgba(255,255,255,0.58);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-    }
-
-    .time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 34px;
-      line-height: 1;
-    }
-
-    .timeline-item h3 {
-      font-size: 28px;
-      margin-bottom: 6px;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-    }
-
-    .timeline-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .photo-block {
-      position: relative;
-      min-height: 420px;
-      border-radius: 34px;
-      overflow: hidden;
-      background: #ddd url('images/photo-block.jpg') center/cover no-repeat;
-    }
-
-    .photo-block::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(247,241,235,0.03), rgba(47,42,39,0.18));
-    }
-
-    .photo-caption-bottom {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      z-index: 2;
-      text-align: center;
-      color: #fff;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .photo-caption-bottom .names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 40px;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .photo-caption-bottom .date {
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .rsvp form {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-      text-align: left;
-    }
-
-    label {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 4px;
-      display: block;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.74);
-      padding: 14px 16px;
-      font: inherit;
-      color: var(--text);
-      outline: none;
-    }
-
-    textarea { min-height: 110px; resize: vertical; }
-
-    .note {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer-photo {
-      position: relative;
-      min-height: 420px;
-      border-radius: 34px;
-      overflow: hidden;
-      background: #ddd url('images/footer-photo.jpg') center/cover no-repeat;
-    }
-
-    .footer-photo::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(247,241,235,0.03), rgba(47,42,39,0.42));
-    }
-
-    .footer-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      text-align: center;
-      padding: 28px 18px;
-      color: #fff;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.26);
-    }
-
-    .footer-overlay .big {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(30px, 6vw, 48px);
-      line-height: 1.05;
-      margin-bottom: 10px;
-    }
-
-    .footer-overlay .small {
-      font-size: 14px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 640px) {
-      .topbar-inner { gap: 12px; font-size: 11px; }
-      .hero-bg { min-height: 480px; }
-      .hero-card, .card { padding-left: 18px; padding-right: 18px; }
-      .countdown-inline { gap: 8px; }
-      .count-sep { display: none; }
-      .count-circle { min-width: 62px; }
-      .count-circle strong { width: 56px; height: 56px; font-size: 20px; }
-      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-      .time { font-size: 32px; }
-      .photo-block, .footer-photo { min-height: 320px; }
-      .photo-caption-bottom .names { font-size: 32px; }
-      .heart-wrap { width: 66px; height: 66px; top: 38%; left: 74%; }
-      .heart-img { width: 66px; }
-    }
-  </style>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <a href="#invite">Приглашение</a>
-      <a href="#calendar">Календарь</a>
-      <a href="#day">Программа</a>
-      <a href="#place">Место</a>
-      <a href="#dresscode">Dress code</a>
-      <a href="#rsvp">Анкета</a>
+  <header class="hero" id="top">
+    <div class="hero__content reveal">
+      <p class="hero__eyebrow">Свадебное приглашение</p>
+      <h1 class="hero__title">Руслан <span>&amp;</span> Дарья</h1>
+      <p class="hero__subtitle">01 августа 2026</p>
     </div>
-  </div>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-card glass animate-on-scroll">
-        <div class="hero-bg">
-          <div class="floating-ornament left"></div>
-          <div class="floating-ornament right"></div>
-          <div class="hero-content">
-            <div class="eyebrow">Свадебное приглашение</div>
-            <h1>Руслан <span class="amp">&</span> Дарья</h1>
-            <div class="hero-caption">01.08.2026</div>
+    <figure class="hero__portrait reveal">
+      <div class="hero__portrait-frame">
+        <img src="assets/hero-photo.jpg" alt="Руслан и Дарья">
+      </div>
+    </figure>
+  </header>
+
+  <main>
+    <section class="section intro reveal" id="invite">
+      <div class="section-heading section-heading--center">
+        <p class="section-tag">Дорогие родные и близкие!</p>
+        <h2>Мы счастливы пригласить Вас на нашу свадьбу</h2>
+      </div>
+      <p class="lead">
+        Искренне будем рады разделить с Вами поистине счастливый момент нашей
+        жизни.
+      </p>
+    </section>
+
+    <section class="section section-grid" id="calendar">
+      <article class="calendar-card reveal">
+        <div class="calendar-card__header">
+          <span class="section-tag">Календарь</span>
+          <h2>Волшебный день, когда мы станем семьей</h2>
+        </div>
+
+        <div class="calendar-card__frame" aria-label="Календарь на август 2026 года">
+          <p class="calendar-card__month">Август 2026</p>
+          <div class="calendar" aria-hidden="true">
+            <div class="calendar__weekday">Пн</div>
+            <div class="calendar__weekday">Вт</div>
+            <div class="calendar__weekday">Ср</div>
+            <div class="calendar__weekday">Чт</div>
+            <div class="calendar__weekday">Пт</div>
+            <div class="calendar__weekday">Сб</div>
+            <div class="calendar__weekday">Вс</div>
+
+            <div class="calendar__day calendar__day--muted">27</div>
+            <div class="calendar__day calendar__day--muted">28</div>
+            <div class="calendar__day calendar__day--muted">29</div>
+            <div class="calendar__day calendar__day--muted">30</div>
+            <div class="calendar__day calendar__day--muted">31</div>
+            <div class="calendar__day calendar__day--accent">1</div>
+            <div class="calendar__day">2</div>
+
+            <div class="calendar__day">3</div>
+            <div class="calendar__day">4</div>
+            <div class="calendar__day">5</div>
+            <div class="calendar__day">6</div>
+            <div class="calendar__day">7</div>
+            <div class="calendar__day">8</div>
+            <div class="calendar__day">9</div>
+
+            <div class="calendar__day">10</div>
+            <div class="calendar__day">11</div>
+            <div class="calendar__day">12</div>
+            <div class="calendar__day">13</div>
+            <div class="calendar__day">14</div>
+            <div class="calendar__day">15</div>
+            <div class="calendar__day">16</div>
+
+            <div class="calendar__day">17</div>
+            <div class="calendar__day">18</div>
+            <div class="calendar__day">19</div>
+            <div class="calendar__day">20</div>
+            <div class="calendar__day">21</div>
+            <div class="calendar__day">22</div>
+            <div class="calendar__day">23</div>
+
+            <div class="calendar__day">24</div>
+            <div class="calendar__day">25</div>
+            <div class="calendar__day">26</div>
+            <div class="calendar__day">27</div>
+            <div class="calendar__day">28</div>
+            <div class="calendar__day">29</div>
+            <div class="calendar__day">30</div>
+
+            <div class="calendar__day">31</div>
+            <div class="calendar__day calendar__day--muted">1</div>
+            <div class="calendar__day calendar__day--muted">2</div>
+            <div class="calendar__day calendar__day--muted">3</div>
+            <div class="calendar__day calendar__day--muted">4</div>
+            <div class="calendar__day calendar__day--muted">5</div>
+            <div class="calendar__day calendar__day--muted">6</div>
+          </div>
+        </div>
+        <p class="calendar-card__caption">Наша дата: 01 августа 2026</p>
+      </article>
+
+      <article class="countdown-card reveal">
+        <p class="section-tag">Будем счастливы видеть вас через:</p>
+        <div
+          class="timer"
+          id="timer"
+          data-date="2026-08-01T13:30:00+03:00"
+          aria-label="Обратный отсчет до свадьбы"
+        >
+          <div class="timer__item">
+            <strong data-unit="days">000</strong>
+            <span>дней</span>
+          </div>
+          <div class="timer__item">
+            <strong data-unit="hours">00</strong>
+            <span>часов</span>
+          </div>
+          <div class="timer__item">
+            <strong data-unit="minutes">00</strong>
+            <span>минут</span>
+          </div>
+          <div class="timer__item">
+            <strong data-unit="seconds">00</strong>
+            <span>секунд</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section program" id="program">
+      <div class="section-heading section-heading--compact reveal">
+        <p class="section-tag">Программа дня</p>
+      </div>
+
+      <div class="timeline reveal">
+        <article class="timeline__item">
+          <time datetime="13:30">13:30</time>
+          <p>Сбор гостей возле дворца бракосочетания</p>
+        </article>
+        <article class="timeline__item">
+          <time datetime="13:45">13:45</time>
+          <p>Регистрация бракосочетания</p>
+        </article>
+        <article class="timeline__item">
+          <time datetime="14:30">14:30</time>
+          <p>Приветственный фуршет в банкетном зале Radisson</p>
+        </article>
+        <article class="timeline__item">
+          <time datetime="15:00">15:00</time>
+          <p>Начало банкета</p>
+        </article>
+        <article class="timeline__item">
+          <time datetime="23:00">23:00</time>
+          <p>Завершение праздничного вечера</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section venue" id="venue">
+      <div class="section-heading reveal">
+        <p class="section-tag">Место проведения</p>
+      </div>
+
+      <div class="venue-grid">
+        <article class="venue-card reveal">
+          <p class="venue-card__label">Церемония</p>
+          <h3>Дворец бракосочетания</h3>
+          <p>
+            Рады будем видеть Вас на регистрации нашего брака в Дворце
+            бракосочетания по адресу: ул. Советская 47А.
+          </p>
+        </article>
+
+        <article class="venue-card reveal">
+          <p class="venue-card__label">Празднование</p>
+          <h3>Банкетный зал Radisson</h3>
+          <p>
+            Празднование торжества состоится в банкетном зале Radisson по
+            адресу: ул. Советская 54 (вход со стороны набережной).
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section map-section">
+      <div class="map-card reveal">
+        <div class="map-card__visual" aria-hidden="true">
+          <div class="map-card__line map-card__line--one"></div>
+          <div class="map-card__line map-card__line--two"></div>
+          <div class="map-card__pin map-card__pin--left">
+            <span>47А</span>
+          </div>
+          <div class="map-card__pin map-card__pin--right">
+            <span>54</span>
+          </div>
+        </div>
+
+        <div class="map-card__content">
+          <p class="section-tag">Карта</p>
+          <h2>Сохраните адреса, чтобы день прошёл спокойно и красиво</h2>
+          <p>
+            Для удобства мы оставили быстрые ссылки на поиск адресов в Яндекс
+            Картах.
+          </p>
+          <div class="map-card__actions">
+            <a
+              class="button"
+              href="https://yandex.com/maps/-/CPrkMFKC"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Дворец бракосочетания
+            </a>
+            <a
+              class="button button--secondary"
+              href="https://yandex.ru/maps/?text=Radisson%20%D1%83%D0%BB.%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%B0%D1%8F%2054"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Банкетный зал Radisson
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="photo-block glass animate-on-scroll">
-        <div class="photo-caption-bottom">
-          <div class="names">Руслан Дарья</div>
-          <div class="date">01.08.2026</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="invite">
-      <div class="card glass animate-on-scroll">
-        <h2>Дорогие родные и близкие!</h2>
-        <div class="divider"></div>
-        <p class="lead love-text animate-on-scroll">
-          <span>Мы счастливы пригласить Вас на нашу свадьбу.</span>
-          <span>Искренне будем рады разделить с Вами</span>
-          <span>поистине счастливый момент нашей жизни.</span>
+    <section class="section dresscode" id="dresscode">
+      <div class="dresscode__content reveal">
+        <p class="section-tag">Dress Code</p>
+        <p>
+          Мы очень старались сделать праздник красивым и будем рады, если при
+          выборе нарядов на наше торжество Вы придержитесь классических,
+          пастельных тонов (главное - не кислотно-ярких и темных).
         </p>
-      </div>
-    </section>
-
-    <section id="calendar">
-      <div class="card glass animate-on-scroll">
-        <h2>Календарь</h2>
-        <div class="calendar-wrap">
-          <img src="images/calendar.png" alt="Календарь августа 2026">
-          <div class="heart-wrap">
-            <img src="images/heart.png" class="heart-img" alt="Сердце">
-            <img src="images/heart.png" class="heart-img second" alt="Сердце">
-          </div>
-        </div>
-        <div class="subhead">Волшебный день, когда мы станем семьей</div>
-        <p class="lead">Будем счастливы видеть вас через:</p>
-
-        <div class="countdown-inline" id="countdown">
-          <div class="count-circle"><strong id="days">0</strong><span>дней</span></div>
-          <div class="count-sep">:</div>
-          <div class="count-circle"><strong id="hours">0</strong><span>часов</span></div>
-          <div class="count-sep">:</div>
-          <div class="count-circle"><strong id="minutes">0</strong><span>минут</span></div>
-          <div class="count-sep">:</div>
-          <div class="count-circle"><strong id="seconds">0</strong><span>секунд</span></div>
-        </div>
-
-        <button class="music-toggle" id="musicToggle" type="button">🎵 Включить музыку</button>
-      </div>
-    </section>
-
-    <section id="day">
-      <div class="card glass animate-on-scroll">
-        <h2>Программа дня</h2>
-        <div class="timeline">
-          <div class="timeline-item glass animate-on-scroll">
-            <div class="time">13:30</div>
-            <div>
-              <h3>Сбор гостей</h3>
-              <p>Возле дворца бракосочетания</p>
-            </div>
-          </div>
-          <div class="timeline-item glass animate-on-scroll">
-            <div class="time">13:45</div>
-            <div>
-              <h3>Регистрация</h3>
-              <p>Регистрация бракосочетания</p>
-            </div>
-          </div>
-          <div class="timeline-item glass animate-on-scroll">
-            <div class="time">14:30</div>
-            <div>
-              <h3>Приветственный фуршет в банкетном зале Radisson</h3>
-              <p>Тёплые встречи, поздравления и начало праздника</p>
-            </div>
-          </div>
-          <div class="timeline-item glass animate-on-scroll">
-            <div class="time">15:00</div>
-            <div>
-              <h3>Начало банкета</h3>
-              <p>Праздничный вечер в банкетном зале Radisson</p>
-            </div>
-          </div>
-          <div class="timeline-item glass animate-on-scroll">
-            <div class="time">23:00</div>
-            <div>
-              <h3>Завершение вечера</h3>
-              <p>Финал праздничного вечера</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="place">
-      <div class="card glass animate-on-scroll">
-        <h2>Место проведения</h2>
-        <div class="divider"></div>
-        <p class="lead">
-          Рады будем видеть Вас на регистрации нашего брака в Дворце бракосочетания по адресу: ул. Советская 47А
-        </p>
-        <p class="lead" style="margin-top:14px;">
-          Празднование торжества состоится в банкетном зале Radisson по адресу: ул. Советская 54 (вход со стороны набережной)
-        </p>
-        <a class="map-link" href="https://yandex.ru/maps" target="_blank">Карта</a>
-      </div>
-    </section>
-
-    <section id="dresscode">
-      <div class="card glass animate-on-scroll">
-        <h2>Dress code</h2>
-        <div class="divider"></div>
-        <p class="lead">
-          Мы очень старались сделать праздник красивым и будем рады, если при выборе нарядов на наше торжество Вы придержитесь классических, пастельных тонов (главное — не кислотно-ярких и темных).
-        </p>
-        <p class="lead" style="margin-top:14px;">
+        <p>
           Будем благодарны, если вы оставите белый цвет для невесты.
         </p>
       </div>
+
+      <aside class="dresscode__aside reveal">
+        <p class="dresscode__aside-tag">Preferred palette</p>
+        <figure class="photo-card photo-card--palette">
+          <img src="assets/dresscode-photo.jpg" alt="Палитра dress code">
+        </figure>
+        <p class="dresscode__aside-note">
+          Мягкие, светлые и классические оттенки будут особенно уместны.
+        </p>
+      </aside>
     </section>
 
-    <section>
-      <div class="photo-block glass animate-on-scroll" style="background-image:url('images/middle-photo.jpg');"></div>
-    </section>
-
-    <section id="rsvp">
-      <div class="card glass rsvp animate-on-scroll">
-        <h2>Анкета гостя</h2>
-        <p class="lead">Будем признательны, если Вы подтвердите свое присутствие до 1 июня</p>
-
-        <form>
-          <div>
-            <label>Ваше имя и фамилия</label>
-            <input type="text" placeholder="Например: Анна Иванова">
-          </div>
-
-          <div>
-            <label>Сможете ли присутствовать на нашем торжестве?</label>
-            <select>
-              <option>Обязательно буду</option>
-              <option>К сожалению, не смогу присутствовать</option>
-            </select>
-          </div>
-
-          <div>
-            <label>В какой момент Вы присоединитесь к нашему празднику?</label>
-            <select>
-              <option>Регистрация</option>
-              <option>Банкет</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Что предпочитаете из напитков?</label>
-            <select>
-              <option>Красное вино</option>
-              <option>Белое вино</option>
-              <option>Шампанское</option>
-              <option>Крепкие напитки</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Поделитесь названием композиции, которая обязательно должна прозвучать в этот вечер</label>
-            <textarea placeholder="Напишите название песни"></textarea>
-          </div>
-
-          <button class="btn" type="button">Отправить</button>
-        </form>
-
-        <p class="note">Чтобы анкета реально отправляла ответы, её можно подключить к Google Forms, Formspree или Telegram-боту.</p>
+    <section class="section rsvp" id="rsvp">
+      <div class="section-heading reveal">
+        <p class="section-tag">Анкета гостя</p>
+        <h2>
+          Будем признательны, если Вы подтвердите свое присутствие до 1 июня
+        </h2>
       </div>
-    </section>
 
-    <section>
-      <div class="footer-photo glass animate-on-scroll">
-        <div class="footer-overlay">
-          <div>
-            <div class="big">БУДЕМ РАДЫ ВИДЕТЬ ВАС НА НАШЕМ ПРАЗДНИКЕ!</div>
-            <div class="small">01.08.2026</div>
-          </div>
+      <div class="rsvp-card reveal">
+        <div class="rsvp-card__content">
+          <p class="rsvp-card__eyebrow">Удобная онлайн-форма</p>
+          <p class="rsvp-card__text">
+            Чтобы ответить было проще с любого устройства, мы вынесли анкету в
+            отдельную форму. Откройте ссылку ниже и заполните ее в удобное для
+            вас время.
+          </p>
+        </div>
+
+        <div class="rsvp-card__actions">
+          <a
+            class="button rsvp-card__button"
+            href="https://forms.gle/p71SYZ8rDLFcoUGw5"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Открыть форму
+          </a>
+          <p class="rsvp-card__note">Ссылка откроется в новой вкладке.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <script>
-    const weddingDate = new Date('2026-08-01T13:45:00+03:00').getTime();
+  <section class="closing-banner reveal">
+    <div class="closing-banner__photo">
+      <img src="assets/final-photo.jpg" alt="Руслан и Дарья">
+    </div>
+    <div class="closing-banner__caption">
+      <p>БУДЕМ РАДЫ ВИДЕТЬ ВАС НА НАШЕМ ПРАЗДНИКЕ!</p>
+      <strong>01.08.2026</strong>
+    </div>
+  </section>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.14 });
-
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance <= 0) {
-        document.getElementById('days').textContent = '0';
-        document.getElementById('hours').textContent = '0';
-        document.getElementById('minutes').textContent = '0';
-        document.getElementById('seconds').textContent = '0';
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    const music = new Audio('music/song.mp3');
-    music.loop = true;
-    const musicToggle = document.getElementById('musicToggle');
-
-    musicToggle.addEventListener('click', async () => {
-      try {
-        if (music.paused) {
-          await music.play();
-          musicToggle.textContent = '⏸ Выключить музыку';
-        } else {
-          music.pause();
-          musicToggle.textContent = '🎵 Включить музыку';
-        }
-      } catch (e) {
-        alert('Добавьте файл music/song.mp3 в репозиторий, чтобы музыка заработала.');
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
